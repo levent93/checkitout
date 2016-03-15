@@ -1,107 +1,246 @@
 
-<!-- Sadrzaj START -->	
-
-<div class="row">
-	<div class="col-sm-3">
-
-		<div class="well text-center" id="rezultati">
-			<h4>Koji operativni sistem koristite?</h4>
-
-			<div class="row">
-				<div class="col-xs-2">
-					<button class="btn btn-xs anketa" id="apple">
-						<i class="fa fa-lg fa-apple"></i>
-					</button>
-				</div>
-				<div class="col-xs-10">
-					<div class="progress">
-						<div id="apple-response" class="progress-bar" role="progressbar"></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-2">
-					<button class="btn btn-xs anketa" id="android">
-						<i class="fa fa-lg fa-android"></i>
-					</button>
-				</div>
-				<div class="col-xs-10">
-					<div class="progress">
-						<div id="android-response" class="progress-bar" role="progressbar"></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-2">
-					<button class="btn btn-xs anketa" id="windows">
-						<i class="fa fa-lg fa-windows"></i>
-					</button>
-				</div>
-				<div class="col-xs-10">
-					<div class="progress">
-						<div id="windows-response" class="progress-bar" role="progressbar"></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-2">
-					<button class="btn btn-xs anketa" id="linux">
-						<i class="fa fa-lg fa-linux"></i>
-					</button>
-				</div>
-				<div class="col-xs-10">
-					<div class="progress">
-						<div id="linux-response" class="progress-bar" role="progressbar"></div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-	<div class="col-sm-9">
+<table id="proizvodi" class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Naziv</th>
+			<th>Cena</th>
+			<th>Slika</th>
+			<th>Opis</th>
+			<th>Kategorija</th>
+			<th>Proizvodjac</th>
+			<th>Uneo</th>
+			<th>Dana</th>
+			<th title="Izmena"><i class="fa fa-pencil fa-lg"></i></th>
+			<th title="Brisanje"><i class="fa fa-trash-o fa-lg"></i></th>
+		</tr>
+	</thead>
+	<tbody>
 		<?php foreach ($tabela as $red) : ?>
-			<div class="col-sm-4">
-				<div class="thumbnail">
+			<?php if (isset($id) && $id == $red->id) : ?>
+				<tr>
 					<?php
-					if (!file_exists("manje_slike/" . $red->slika)) :
-						$thumb = imagecreatetruecolor(320, 180);
-						$slika = imagecreatefromjpeg($red->slika);
-						imagecopyresampled($thumb, $slika, 0, 0, 0, 0, 320, 180, 2000, 1130);
-						imagejpeg($thumb, "manje_slike/" . $red->slika, 100);
-						imagedestroy($thumb);
-						imagedestroy($slika);
-					endif;
+					$attributes = array(
+						'id' => 'izmena',
+						'name' => 'izmena'
+					);
+					echo form_open('', $attributes);
 					?>
-					<img src="<?php echo base_url() . "manje_slike/$red->slika"; ?>" alt=""/>
-					<div class="caption">
-						<h3><?php echo $red->naziv; ?></h3>
-						<p>$ <?php echo $red->cena; ?>,00</p>
-						<p>
-							<?php
-							$attributes = array(
-								'class' => 'btn btn-default',
-								'role' => 'button'
-							);
-							echo anchor('proizvod/index/' . $red->id, 'Pogledaj', $attributes);
-							?>
-							<a href="#" class="btn btn-primary" role="button">
-								<i class="fa fa-lg fa-shopping-cart"></i>
-							</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		<?php endforeach; ?>
-		<?php
-		if (isset($links)) {
-			echo $links;
-		}
+					<td>
+						<?php
+						$data = array(
+							'name' => 'naziv',
+							'id' => 'naziv',
+							'class' => 'form-control input-sm',
+							'placeholder' => 'Naziv',
+							'form' => 'izmena',
+							'value' => $red->naziv
+						);
+						echo form_input($data);
+						?>
+					</td>
+					<td>
+						<?php
+						$data = array(
+							'name' => 'cena',
+							'id' => 'cena',
+							'class' => 'form-control input-sm',
+							'placeholder' => 'Cena',
+							'form' => 'izmena',
+							'value' => $red->cena
+						);
+						echo form_input($data);
+						?>
+					</td>
+					<td>
+						<?php
+						$data = array(
+							'name' => 'slika',
+							'id' => 'slika',
+							'class' => 'form-control input-sm',
+							'placeholder' => 'Slika',
+							'form' => 'izmena',
+							'value' => $red->slika
+						);
+						echo form_input($data);
+						?>
+					</td>
+					<td>
+						<?php
+						$data = array(
+							'name' => 'opis',
+							'id' => 'opis',
+							'class' => 'form-control input-sm',
+							'placeholder' => 'Opis',
+							'form' => 'izmena',
+							'value' => $red->opis
+						);
+						echo form_input($data);
+						?>
+					</td>
+					<td>
+						<?php
+						$data = array(
+							'name' => 'kategorija_id',
+							'id' => 'kategorija_id',
+							'class' => 'form-control input-sm',
+							'placeholder' => 'Id kategorije',
+							'form' => 'izmena',
+							'value' => $red->kategorija_id
+						);
+						echo form_input($data);
+						?>
+					</td>
+					<td>
+						<?php
+						$data = array(
+							'name' => 'brand_id',
+							'id' => 'brand_id',
+							'class' => 'form-control input-sm',
+							'placeholder' => 'Id brenda',
+							'form' => 'izmena',
+							'value' => $red->brand_id
+						);
+						echo form_input($data);
+						?>
+					</td>
+					<td><?php echo $red->izmenio; ?></td>
+					<td><?php echo date('d.m.y h a', $red->vreme_izmene); ?></td>
+					<td>
+						<button id="<?php echo $red->id; ?>" class="btn btn-xs btn-link">
+							<i class="fa fa-floppy-o fa-lg"></i>
+						</button>
+					</td>
+					<td>
+						<button class="btn btn-xs btn-link" onclick="vrati_podatke('proizvodi', '');">
+							<i class="fa fa-times fa-lg"></i>
+						</button>
+					</td>
+					<?php echo form_close(); ?>
+				</tr>
+			<?php else : ?>
+				<tr>
+					<td><?php echo $red->naziv; ?></td>
+					<td><?php echo $red->cena; ?></td>
+					<td><?php echo $red->slika; ?></td>
+					<td><?php echo $red->opis; ?></td>
+					<td><?php echo $red->kategorija_id; ?></td>
+					<td><?php echo $red->brand_id; ?></td>
+					<td><?php echo $red->izmenio; ?></td>
+					<td><?php echo date('d.m.y h a', $red->vreme_izmene); ?></td>
+					<td>
+						<button id="<?php echo $red->id; ?>" onclick="vrati_podatke('proizvodi', this.id);" class="btn btn-xs btn-link">
+							<i class="fa fa-pencil fa-lg"></i>
+						</button>
+					</td>
+					<td>
+						<button id="<?php echo $red->id; ?>" class="btn btn-xs btn-link">
+							<i class="fa fa-trash-o fa-lg"></i>
+						</button>
+					</td>
+				</tr>
+			<?php
+			endif;
+		endforeach;
 		?>
-	</div>
-
-</div>
-
-<!-- Row END -->
+		<tr>
+			<?php
+			$attributes = array(
+				'id' => 'dodavanje',
+				'name' => 'dodavanje'
+			);
+			echo form_open('', $attributes);
+			?>
+			<td>
+				<?php
+				$data = array(
+					'name' => 'naziv',
+					'id' => 'naziv',
+					'class' => 'form-control input-sm',
+					'placeholder' => 'Naziv',
+					'value' => '',
+					'form' => 'dodavanje'
+				);
+				echo form_input($data);
+				?>
+			</td>
+			<td>
+				<?php
+				$data = array(
+					'name' => 'cena',
+					'id' => 'cena',
+					'class' => 'form-control input-sm',
+					'placeholder' => 'Cena',
+					'form' => 'dodavanje',
+					'value' => ''
+				);
+				echo form_input($data);
+				?>
+			</td>
+			<td>
+				<?php
+				$data = array(
+					'name' => 'slika',
+					'id' => 'slika',
+					'class' => 'form-control input-sm',
+					'placeholder' => 'Slika',
+					'form' => 'dodavanje',
+					'value' => ''
+				);
+				echo form_input($data);
+				?>
+			</td>
+			<td>
+				<?php
+				$data = array(
+					'name' => 'opis',
+					'id' => 'opis',
+					'class' => 'form-control input-sm',
+					'placeholder' => 'Opis',
+					'form' => 'dodavanje',
+					'value' => ''
+				);
+				echo form_input($data);
+				?>
+			</td>
+			<td>
+				<?php
+				$data = array(
+					'name' => 'kategorija_id',
+					'id' => 'kategorija_id',
+					'class' => 'form-control input-sm',
+					'placeholder' => '1',
+					'form' => 'dodavanje',
+					'value' => ''
+				);
+				echo form_input($data);
+				?>
+			</td>
+			<td>
+				<?php
+				$data = array(
+					'name' => 'brand_id',
+					'id' => 'brand_id',
+					'class' => 'form-control input-sm',
+					'placeholder' => '1',
+					'form' => 'dodavanje',
+					'value' => ''
+				);
+				echo form_input($data);
+				?>
+			</td>
+			<td><?php echo $this->session->ime; ?></td>
+			<td><?php echo date('d.m.y h a'); ?></td>
+			<td>
+				<button class="btn btn-xs btn-link">
+					<i class="fa fa-floppy-o fa-lg"></i>
+				</button>
+			</td>
+			<td>
+				<button type="reset" class="btn btn-xs btn-link" form="dodavanje">
+					<i class="fa fa-times fa-lg"></i>
+				</button>
+			</td>
+		</tr>
+		<?php echo form_close(); ?>
+	</tbody>
+</table>

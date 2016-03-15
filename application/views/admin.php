@@ -13,6 +13,21 @@
 						</a>
 					</li>
 					<li role="presentation">
+						<a href="" onclick="vrati_podatke('o_autoru', '');" role="tab" data-toggle="tab">
+							O autoru
+						</a>
+					</li>
+					<li role="presentation">
+						<a href="" onclick="vrati_podatke('proizvodi', '');" role="tab" data-toggle="tab">
+							Proizvodi
+						</a>
+					</li>
+					<li>
+						<a href="" onclick="vrati_podatke('brand', '');" role="tab" data-toggle="tab">
+							Brend
+						</a>
+					</li>
+					<li role="presentation">
 						<a href="" onclick="vrati_podatke('korisnici', '');" role="tab" data-toggle="tab">
 							Korisnici
 						</a>

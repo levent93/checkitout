@@ -1,10 +1,8 @@
 
-<table id="o_autoru" class="table table-striped table-hover">
+<table id="brand" class="table table-striped table-hover">
 	<thead>
 		<tr>
-			<th>Naslov</th>
-			<th>Tekst</th>
-			<th>Slika</th>
+			<th>Naziv</th>
 			<th>Uneo</th>
 			<th>Dana</th>
 			<th title="Izmena"><i class="fa fa-pencil fa-lg"></i></th>
@@ -18,46 +16,19 @@
 					<?php
 					$attributes = array(
 						'id' => 'izmena',
-						'name' => 'izmena'
+						'name' => 'izmena',
 					);
 					echo form_open('', $attributes);
 					?>
 					<td>
 						<?php
 						$data = array(
-							'name' => 'naslov',
-							'id' => 'naslov',
+							'name' => 'naziv',
+							'id' => 'naziv',
 							'class' => 'form-control input-sm',
-							'placeholder' => 'Naslov',
+							'placeholder' => 'Naziv',
 							'form' => 'izmena',
-							'value' => $red->naslov
-						);
-						echo form_input($data);
-						?>
-					</td>
-					<td>
-						<?php
-						$data = array(
-							'name' => 'tekst',
-							'id' => 'tekst',
-							'rows' => 4,
-							'class' => 'form-control input-sm',
-							'placeholder' => 'Neki tekst ovde',
-							'form' => 'izmena',
-							'value' => $red->tekst
-						);
-						echo form_textarea($data);
-						?>
-					</td>
-					<td>
-						<?php
-						$data = array(
-							'name' => 'slika',
-							'id' => 'slika',
-							'class' => 'form-control input-sm',
-							'placeholder' => 'Putanja do slike',
-							'form' => 'izmena',
-							'value' => $red->slika
+							'value' => $red->naziv,
 						);
 						echo form_input($data);
 						?>
@@ -70,7 +41,7 @@
 						</button>
 					</td>
 					<td>
-						<button class="btn btn-xs btn-link" onclick="vrati_podatke('o_autoru', '');">
+						<button class="btn btn-xs btn-link" onclick="vrati_podatke('brand', '');">
 							<i class="fa fa-times fa-lg"></i>
 						</button>
 					</td>
@@ -78,13 +49,11 @@
 				</tr>
 			<?php else : ?>
 				<tr>
-					<td><?php echo $red->naslov; ?></td>
-					<td><?php echo $red->tekst; ?></td>
-					<td><?php echo $red->slika; ?></td>
+					<td><?php echo $red->naziv; ?></td>
 					<td><?php echo $red->ime; ?></td>
 					<td><?php echo date('d.m.y h a', $red->vreme_izmene); ?></td>
 					<td>
-						<button id="<?php echo $red->id; ?>" onclick="vrati_podatke('o_autoru', this.id);" class="btn btn-xs btn-link">
+						<button id="<?php echo $red->id; ?>" onclick="vrati_podatke('brand', this.id);" class="btn btn-xs btn-link">
 							<i class="fa fa-pencil fa-lg"></i>
 						</button>
 					</td>
@@ -109,39 +78,12 @@
 			<td>
 				<?php
 				$data = array(
-					'name' => 'naslov',
-					'id' => 'naslov',
+					'name' => 'naziv',
+					'id' => 'naziv',
 					'class' => 'form-control input-sm',
-					'placeholder' => 'Naslov',
+					'placeholder' => 'Naziv',
 					'value' => '',
-					'form' => 'dodavanje'
-				);
-				echo form_input($data);
-				?>
-			</td>
-			<td>
-				<?php
-				$data = array(
-					'name' => 'tekst',
-					'id' => 'tekst',
-					'class' => 'form-control input-sm',
-					'rows' => 4,
-					'placeholder' => 'Text',
-					'value' => '',
-					'form' => 'dodavanje'
-				);
-				echo form_textarea($data);
-				?>
-			</td>
-			<td>
-				<?php
-				$data = array(
-					'name' => 'slika',
-					'id' => 'slika',
-					'class' => 'form-control input-sm',
-					'placeholder' => 'Slika',
-					'value' => '',
-					'form' => 'dodavanje'
+					'form' => 'dodavanje',
 				);
 				echo form_input($data);
 				?>

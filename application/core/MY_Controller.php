@@ -10,12 +10,13 @@ class MY_Controller extends CI_Controller {
 	}
 
 	public function front_end($view, $args = array()) {
+		$data = array();
 		$data['meni'] = $this->menu_model->vrati_linkove();
 
-		$this->load->view('header');
-		$this->load->view('menu', $data);
+		$this->load->view('header', $args);
+		$this->load->view('menu', $data, $args);
 		$this->load->view($view, $args);
-		$this->load->view('footer');
+		$this->load->view('footer', $args);
 	}
 
 	public function back_end($view, $args = array()) {

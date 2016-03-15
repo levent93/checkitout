@@ -11,7 +11,11 @@ class Prijava extends MY_Controller {
 	}
 
 	public function index() {
-		$this->front_end('prijava');
+		$data = array();
+		$data['content'] = 'check IT out je online prodavnica tehnike. Uglavnom pametnih telefona i laptop računara.';
+		$data['keywords'] = 'check it out, prodavnica, onlajn prodavnica, telefoni, laptopovi';
+		$data['title'] = 'Prijava';
+		$this->front_end('prijava', $data);
 	}
 
 	public function prijavi() {
