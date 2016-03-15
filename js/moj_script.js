@@ -77,23 +77,33 @@ $(function () {
 
 	//Anketa START
 	$(".anketa").click(function () {
-		var url = base_url + "anketa/anketa_sistemi";
+		var url = base_url + "anketa/anketiraj";
 		var data = {
-			naziv: this.id
+			anketa_id: this.name,
+			odgovor_id: this.id
 		}
 		$.post(url, data, function (rezultat) {
 			var data = JSON.parse(rezultat);
-			var directive = {
-				'#apple-response': 'apple',
-				'#android-response': 'android',
-				'#windows-response': 'windows',
-				'#linux-response': 'linux'
-			};
-			$("#rezultati").render(data, directive);
-			$("#apple-response").animate({width: data.apple});
-			$("#android-response").animate({width: data.android});
-			$("#windows-response").animate({width: data.windows});
-			$("#linux-response").animate({width: data.linux});
+//			var directive = {
+//				'#apple-response': 'apple',
+//				'#android-response': 'android',
+//				'#windows-response': 'windows',
+//				'#linux-response': 'linux'
+//			};
+//			$("#rezultati").render(data, directive);
+
+			var x;
+			for (x in data) {
+				$('#' + [x] + '-response').animate({width: data[x]});
+				$('#' + [x] + '-response').html(data[x]);
+				//text += person[x];
+				//Kod pisan u ponoc pred predaju sajta i radi!!!
+			}
+			
+//			$("#apple-response").animate({width: data.apple});
+//			$("#android-response").animate({width: data.android});
+//			$("#windows-response").animate({width: data.windows});
+//			$("#linux-response").animate({width: data.linux});
 		});
 	});
 	//Anketa END

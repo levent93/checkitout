@@ -25,7 +25,7 @@
 							'class' => 'btn btn-default',
 							'role' => 'button'
 						);
-						echo anchor('proizvod/index/' . $red->id, 'Pogledaj', $attributes);
+//						echo anchor('proizvod/index/' . $red->id, 'Pogledaj', $attributes);
 						?>
 						<a href="#" class="btn btn-primary" role="button">
 							<i class="fa fa-lg fa-shopping-cart"></i>
@@ -51,7 +51,7 @@
 					<?php if ($odgovor->anketa_id == $anketa->id) : ?>
 						<div class="row">
 							<div class="col-xs-3">
-								<button class="btn btn-xs anketa" id="<?php echo $odgovor->id; ?>">
+								<button class="btn btn-xs anketa" name="<?php echo $anketa->id; ?>" id="<?php echo $odgovor->id; ?>">
 									<i class="fa fa-lg fa-<?php echo $odgovor->odgovor; ?>"></i>
 									<?php echo $odgovor->odgovor; ?>
 								</button>
@@ -66,62 +66,6 @@
 				<?php endforeach; ?>
 			</div>
 		<?php endforeach; ?>
-		<div class="well text-center" id="rezultati">
-			<h4>Koji operativni sistem koristite?</h4>
-
-			<div class="row">
-				<div class="col-xs-2">
-					<button class="btn btn-xs anketa" id="apple">
-						<i class="fa fa-lg fa-apple"></i>
-					</button>
-				</div>
-				<div class="col-xs-10">
-					<div class="progress">
-						<div id="apple-response" class="progress-bar" role="progressbar"></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-2">
-					<button class="btn btn-xs anketa" id="android">
-						<i class="fa fa-lg fa-android"></i>
-					</button>
-				</div>
-				<div class="col-xs-10">
-					<div class="progress">
-						<div id="android-response" class="progress-bar" role="progressbar"></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-2">
-					<button class="btn btn-xs anketa" id="windows">
-						<i class="fa fa-lg fa-windows"></i>
-					</button>
-				</div>
-				<div class="col-xs-10">
-					<div class="progress">
-						<div id="windows-response" class="progress-bar" role="progressbar"></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-2">
-					<button class="btn btn-xs anketa" id="linux">
-						<i class="fa fa-lg fa-linux"></i>
-					</button>
-				</div>
-				<div class="col-xs-10">
-					<div class="progress">
-						<div id="linux-response" class="progress-bar" role="progressbar"></div>
-					</div>
-				</div>
-			</div>
-
-		</div>
 	</div>
 
 </div>

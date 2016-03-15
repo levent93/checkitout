@@ -41,7 +41,7 @@ class Pocetna extends MY_Controller {
 	
 	private function _odgovori() {
 		$this->load->model('Anketa_model');
-		return $this->Anketa_model->vrati_odgovore();
+		return $this->Anketa_model->vrati_sve_odgovore();
 	}
 
 }
