@@ -27,8 +27,21 @@ class Pocetna extends MY_Controller {
 
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$data['tabela'] = $this->Proizvodi_model->vrati_proizvode($config["per_page"], $page);
+		
+		$data['ankete'] = $this->_anketa();
+		$data['odgovori'] = $this->_odgovori();
 
 		$this->front_end('proizvodi_prikaz', $data);
+	}
+	
+	private function _anketa() {
+		$this->load->model('Anketa_model');
+		return $this->Anketa_model->vrati_ankete();
+	}
+	
+	private function _odgovori() {
+		$this->load->model('Anketa_model');
+		return $this->Anketa_model->vrati_odgovore();
 	}
 
 }

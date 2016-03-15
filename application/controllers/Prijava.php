@@ -23,6 +23,7 @@ class Prijava extends MY_Controller {
 		$this->form_validation->set_rules('lozinka', 'Lozinka', 'required');
 		$this->form_validation->set_message('required', 'Polje {field} je obavezno!');
 		$this->form_validation->set_message('alpha_numeric', 'Polje {field} sme da sadrzi samo slova i brojeve!');
+		$this->form_validation->set_message('regex_match', 'Polje {field} nije u dobrom formatu');
 		$this->form_validation->set_error_delimiters('', '');
 
 		if ($this->form_validation->run()) {

@@ -1,11 +1,10 @@
 
-<table id="korisnici" class="table table-striped table-hover">
+<table id="odgovori" class="table table-striped table-hover">
 	<thead>
 		<tr>
-			<th>Korisnicko ime</th>
-			<th>E-mail</th>
-			<!--<th>Lozinka</th>-->
-			<th>Uloga</th>
+			<th>Ponudjeni odgovor</th>
+			<th>Iz ankete</th>
+			<th>Broj glasova</th>
 			<th>Uneo</th>
 			<th>Dana</th>
 			<th title="Izmena"><i class="fa fa-pencil fa-lg"></i></th>
@@ -15,75 +14,62 @@
 	<tbody>
 		<?php foreach ($tabela as $red) : ?>
 			<?php if (isset($id) && $id == $red->id) : ?>
-				<?php
-				$attributes = array(
-					'id' => 'izmena',
-					'name' => 'izmena',
-				);
-				echo form_open('', $attributes);
-				?>
 				<tr>
-					<td>
-						<?php
-						$data = array(
-							'name' => 'ime',
-							'id' => 'ime',
-							'class' => 'form-control input-sm',
-							'placeholder' => 'Korisnicko ime',
-							'form' => 'izmena',
-							'value' => $red->ime,
-						);
-						echo form_input($data);
-						?>
-					</td>
-					<td>
-						<?php
-						$data = array(
-							'name' => 'email',
-							'id' => 'email',
-							'class' => 'form-control input-sm',
-							'placeholder' => 'ime@gmail.com',
-							'form' => 'izmena',
-							'value' => $red->email,
-						);
-						echo form_input($data);
-						?>
-					</td>
-		<!--					<td>
 					<?php
-					$data = array(
-						'name' => 'lozinka',
-						'id' => 'lozinka',
-						'class' => 'form-control input-sm',
-						'placeholder' => 'Lozinka',
-						'form' => 'izmena',
-						'value' => ''
+					$attributes = array(
+						'id' => 'izmena',
+						'name' => 'izmena'
 					);
-					echo form_password($data);
+					echo form_open('', $attributes);
 					?>
-					</td>-->
 					<td>
 						<?php
 						$data = array(
-							'name' => 'uloga_id',
-							'id' => 'uloga_id',
+							'name' => 'odgovor',
+							'id' => 'odgovor',
 							'class' => 'form-control input-sm',
-							'placeholder' => 'Lozinka',
+							'placeholder' => 'Odgovor',
 							'form' => 'izmena',
-							'value' => $red->uloga_id
+							'value' => $red->odgovor
+						);
+						echo form_input($data);
+						?>
+					</td>
+					<td>
+						<?php
+						$data = array(
+							'name' => 'anketa_id',
+							'id' => 'anketa_id',
+							'class' => 'form-control input-sm',
+							'placeholder' => 'Anketa id',
+							'form' => 'izmena',
+							'value' => $red->anketa_id
+						);
+						echo form_input($data);
+						?>
+					</td>
+					<td>
+						<?php
+						$data = array(
+							'name' => 'glasovi',
+							'id' => 'glasovi',
+							'class' => 'form-control input-sm',
+							'placeholder' => 'Glasovi',
+							'form' => 'izmena',
+							'value' => $red->glasovi,
 						);
 						echo form_input($data);
 						?>
 					</td>
 					<td><?php echo $red->izmenio; ?></td>
-					<td><?php echo date('d.m.y h a', $red->vreme_izmene); ?></td>
+					<td><?php echo date('d M H:i:s', $red->vreme_izmene); ?></td>
 					<td>
 						<button id="<?php echo $red->id; ?>" class="btn btn-xs btn-link">
 							<i class="fa fa-floppy-o fa-lg"></i>
 						</button>
 					</td>
 					<td>
-						<button class="btn btn-xs btn-link" onclick="vrati_podatke('korisnici', '');">
+						<button class="btn btn-xs btn-link" onclick="vrati_podatke('odgovori', '');">
 							<i class="fa fa-times fa-lg"></i>
 						</button>
 					</td>
@@ -91,14 +77,13 @@
 				</tr>
 			<?php else : ?>
 				<tr>
+					<td><?php echo $red->odgovor; ?></td>
+					<td><?php echo $red->anketa_id; ?></td>
+					<td><?php echo $red->glasovi; ?></td>
 					<td><?php echo $red->ime; ?></td>
-					<td><?php echo $red->email; ?></td>
-					<!--<td>********</td>-->
-					<td><?php echo $red->uloga_id; ?></td>
-					<td><?php echo $red->izmenio; ?></td>
 					<td><?php echo date('d.m.y h a', $red->vreme_izmene); ?></td>
 					<td>
-						<button id="<?php echo $red->id; ?>" onclick="vrati_podatke('korisnici', this.id);" class="btn btn-xs btn-link">
+						<button id="<?php echo $red->id; ?>" onclick="vrati_podatke('odgovori', this.id);" class="btn btn-xs btn-link">
 							<i class="fa fa-pencil fa-lg"></i>
 						</button>
 					</td>
@@ -116,19 +101,19 @@
 			<?php
 			$attributes = array(
 				'id' => 'dodavanje',
-				'name' => 'dodavanje',
+				'name' => 'dodavanje'
 			);
 			echo form_open('', $attributes);
 			?>
 			<td>
 				<?php
 				$data = array(
-					'name' => 'ime',
-					'id' => 'ime',
+					'name' => 'odgovor',
+					'id' => 'odgovor',
 					'class' => 'form-control input-sm',
-					'placeholder' => 'Ime',
+					'placeholder' => 'Odgovor',
 					'value' => '',
-					'form' => 'dodavanje',
+					'form' => 'dodavanje'
 				);
 				echo form_input($data);
 				?>
@@ -136,38 +121,25 @@
 			<td>
 				<?php
 				$data = array(
-					'name' => 'email',
-					'id' => 'email',
+					'name' => 'anketa_id',
+					'id' => 'anketa_id',
 					'class' => 'form-control input-sm',
-					'placeholder' => 'ime@gmail.com',
+					'placeholder' => 'Anketa id',
 					'value' => '',
-					'form' => 'dodavanje',
+					'form' => 'dodavanje'
 				);
 				echo form_input($data);
 				?>
 			</td>
-<!--			<td>
-				<?php
-				$data = array(
-					'name' => 'lozinka',
-					'id' => 'lozinka',
-					'class' => 'form-control input-sm',
-					'placeholder' => 'Lozinka',
-					'value' => '',
-					'form' => 'dodavanje',
-				);
-				echo form_password($data);
-				?>
-			</td>-->
 			<td>
 				<?php
 				$data = array(
-					'name' => 'uloga_id',
-					'id' => 'uloga_id',
+					'name' => 'glasovi',
+					'id' => 'glasovi',
 					'class' => 'form-control input-sm',
-					'placeholder' => 'Id uloge',
+					'placeholder' => 'Broj glasova',
 					'value' => '',
-					'form' => 'dodavanje',
+					'form' => 'dodavanje'
 				);
 				echo form_input($data);
 				?>
@@ -180,7 +152,7 @@
 				</button>
 			</td>
 			<td>
-				<button type="reset" class="btn btn-xs btn-link" form="dodavanje">
+				<button type="reset" class="btn btn-xs btn-link"  form="dodavanje">
 					<i class="fa fa-times fa-lg"></i>
 				</button>
 			</td>

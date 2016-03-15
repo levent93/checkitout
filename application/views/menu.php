@@ -38,7 +38,7 @@
 							</ul>
 						</li>
 					<?php elseif ($link->id_nadmeni == 0) : ?>
-						<li class="<?php echo ($title == $link->naziv) ? 'active' : ''; ?>">
+						<li class="<?php echo (isset($title) && $title == $link->naziv) ? 'active' : ''; ?>">
 							<?php echo anchor($link->putanja, $link->naziv); ?>
 						</li>
 						<?php

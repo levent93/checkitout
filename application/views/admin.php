@@ -42,6 +42,16 @@
 							Kategorije
 						</a>
 					</li>
+					<li role="presentation">
+						<a href="" onclick="vrati_podatke('ankete', '');" role="tab" data-toggle="tab">
+							Ankete
+						</a>
+					</li>
+					<li role="presentation">
+						<a href="" onclick="vrati_podatke('odgovori', '');" role="tab" data-toggle="tab">
+							Odgovori
+						</a>
+					</li>
 				</ul>
 				<div id="tabela" class="tab-content"></div>
 			</div>

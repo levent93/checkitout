@@ -16,8 +16,17 @@ class Anketa_model extends CI_Model {
 		);
 		$this->db->update('anketa_sistem', $data);
 	}
-	
+
 	public function vrati() {
 		return $this->db->get('anketa_sistem')->row();
 	}
+	
+	public function vrati_ankete() {
+		return $this->db->get('ankete')->result();
+	}
+	
+	public function vrati_odgovore() {
+		return $this->db->get('odgovori')->result();
+	}
+
 }

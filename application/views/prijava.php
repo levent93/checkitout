@@ -92,7 +92,7 @@
 				<h3 class="panel-title">Napravi profil</h3>
 			</div>
 			<div class="panel-body">
-				Panel content
+				Trenutno nije moguće samostalno registrovanje na sajt. Za registraciju kontaktirajte administratora.
 			</div>
 		</div>
 	</div>

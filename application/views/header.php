@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-		<meta name="description" content="<?php echo $content; ?>">
-    <meta name="keywords" content="<?php echo $keywords; ?>">
+		<meta name="description" content="<?php echo (isset($content)) ? $content : ''; ?>">
+    <meta name="keywords" content="<?php echo (isset($keywords)) ? $keywords : ''; ?>">
     <meta name="author" content="Levent Mustafa levent.leki.93@gmail.com">
     <link rel="icon" href="<?php echo base_url(); ?>favicon.ico">
-    <title>check IT out | <?php echo $title; ?></title>
+    <title>check IT out | <?php echo (isset($title)) ? $title : ''; ?></title>
 
 		<!--OFFLINE SOURCE NOT USING IN PRODUCTION-->
 		
