@@ -84,26 +84,13 @@ $(function () {
 		}
 		$.post(url, data, function (rezultat) {
 			var data = JSON.parse(rezultat);
-//			var directive = {
-//				'#apple-response': 'apple',
-//				'#android-response': 'android',
-//				'#windows-response': 'windows',
-//				'#linux-response': 'linux'
-//			};
-//			$("#rezultati").render(data, directive);
 
 			var x;
 			for (x in data) {
 				$('#' + [x] + '-response').animate({width: data[x]});
 				$('#' + [x] + '-response').html(data[x]);
-				//text += person[x];
 				//Kod pisan u ponoc pred predaju sajta i radi!!!
 			}
-			
-//			$("#apple-response").animate({width: data.apple});
-//			$("#android-response").animate({width: data.android});
-//			$("#windows-response").animate({width: data.windows});
-//			$("#linux-response").animate({width: data.linux});
 		});
 	});
 	//Anketa END

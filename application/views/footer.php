@@ -35,7 +35,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!--Pure JS-->
-<script src="http://pure.github.io/pure/libs/pure.js"></script>
+<!--<script src="http://pure.github.io/pure/libs/pure.js"></script>-->
 
 <!--OFFLINE SOURCE-->
 
