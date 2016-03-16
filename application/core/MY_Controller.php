@@ -19,8 +19,4 @@ class MY_Controller extends CI_Controller {
 		$this->load->view('footer', $args);
 	}
 
-	public function back_end($view, $args = array()) {
-		$this->load->view($view);
-	}
-
 }
