@@ -28,16 +28,19 @@
 
 <!--/////////////////////////////////////////////////////////////////////////////////////////-->
 
-<!--OFFLINE SOURCE-->
+<!--ONLINE SOURCE-->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!--Pure JS-->
-<!--<script src="http://pure.github.io/pure/libs/pure.js"></script>-->
+<script src="http://pure.github.io/pure/libs/pure.js"></script>
+<!--Nema vajde od ovog pure js
+handlebarsjs...-->
+<script src="https://cdn.jsdelivr.net/handlebarsjs/4.0.5/handlebars.min.js"></script>
 
-<!--OFFLINE SOURCE-->
+<!--ONLINE SOURCE-->
 
 <script src="<?php echo base_url(); ?>js/moj_script.js" type="text/javascript"></script>
 </body>

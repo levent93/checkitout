@@ -15,7 +15,8 @@ $(function () {
 			$(".form-group:nth-child(1)").addClass("has-error has-feedback");
 			$(".form-group:nth-child(1) span:nth-child(1)").addClass("glyphicon glyphicon-remove form-control-feedback");
 			$(".form-group:nth-child(1) span:nth-child(2)").text(greske_ime);
-		} else {
+		}
+		else {
 			$(".form-group:nth-child(1)").removeClass("has-error has-feedback");
 			$(".form-group:nth-child(1) span:nth-child(1)").removeClass("glyphicon glyphicon-remove form-control-feedback");
 			$(".form-group:nth-child(1) span:nth-child(2)").text("");
@@ -26,7 +27,8 @@ $(function () {
 			$(".form-group:nth-child(2)").addClass("has-error has-feedback");
 			$(".form-group:nth-child(2) span:nth-child(1)").addClass("glyphicon glyphicon-remove form-control-feedback");
 			$(".form-group:nth-child(2) span:nth-child(2)").text(greske_lozinka);
-		} else {
+		}
+		else {
 			$(".form-group:nth-child(2)").removeClass("has-error has-feedback");
 			$(".form-group:nth-child(2) span:nth-child(1)").removeClass("glyphicon glyphicon-remove form-control-feedback");
 			$(".form-group:nth-child(2) span:nth-child(2)").text("");
@@ -52,8 +54,7 @@ $(function () {
 	//Brisanje END
 
 	$(document).on("click", "button:has(.fa-floppy-o)", function () {
-		if (this.id)
-		{
+		if (this.id) {
 			//Izmena START
 			var tabela = $(this).closest("table").attr("id");
 			var id = this.id;
@@ -63,7 +64,8 @@ $(function () {
 				$("#tabela").html(data);
 			});
 			//Izmena END
-		} else {
+		}
+		else {
 			//Unos START
 			var tabela = $(this).closest("table").attr("id");
 			var url = base_url + "admin/upis/" + tabela;
@@ -99,6 +101,33 @@ $(function () {
 	$("[href='']").click(function (event) {
 		event.preventDefault();
 		$(this).tab("show");
+	});
+
+//Pure.js template engine primena...
+	$(".pure").click(function () {
+//		$('#tabela').html('<table id="uloge" class="table table-striped table-hover"><thead><tr><th>Naziv</th><th>Uneo</th><th>Dana</th><th title="Izmena"><i class="fa fa-pencil fa-lg"></i></th><th title="Brisanje"><i class="fa fa-trash-o fa-lg"></i></th></tr></thead><tbody><tr><td><span></span></td></tr></tbody></table>');
+		var url = base_url + "admin/pure/uloge";
+		var data = '';
+		$.post(url, data, function (rezultat) {
+			var data = JSON.parse(rezultat);
+			var source = $("#template").html();
+			var template = Handlebars.compile(source);
+			var context = data;
+			var html = template(context);
+			$('#tabela').html(html);
+//			var directive = {
+//				'tr': {
+//					'red<-': {
+//						'td': {
+//							'polje<-red': {
+//								'span': 'polje'
+//							}
+//						}
+//					}
+//				}
+//			};
+//			$p("#tabela tbody").render(data, directive);
+		});
 	});
 
 });

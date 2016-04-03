@@ -8,7 +8,7 @@
 			<div class="panel-body table-responsive">
 				<ul class="nav nav-tabs">
 					<li role="presentation">
-						<a href="" onclick="vrati_podatke('uloge', '');" role="tab" data-toggle="tab">
+						<a href="" class="pure" role="tab" data-toggle="tab">
 							Uloge
 						</a>
 					</li>
@@ -54,6 +54,36 @@
 					</li>
 				</ul>
 				<div id="tabela" class="tab-content"></div>
+				<script id="template" type="text/x-handlebars-template">
+					<table id="uloge" class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>Naziv</th>
+								<th>Uneo</th>
+								<th>Dana</th>
+								<th title="Izmena"><i class="fa fa-pencil fa-lg"></i></th>
+								<th title="Brisanje"><i class="fa fa-trash-o fa-lg"></i></th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each .}}
+							<tr>
+								<td>{{naziv}}</td>
+								<td>{{izmenio}}</td>
+								<td>{{vreme_izmene}}</td>
+								<td><button id="{{id}}" onclick="vrati_podatke('uloge', this.id);" class="btn btn-xs btn-link">
+										<i class="fa fa-pencil fa-lg"></i>
+									</button>
+								</td>
+								<td><button id="{{id}}" class="btn btn-xs btn-link">
+										<i class="fa fa-trash-o fa-lg"></i>
+									</button>
+								</td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</script>
 			</div>
 		</div>
 	</div>

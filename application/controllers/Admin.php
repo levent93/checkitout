@@ -52,5 +52,9 @@ class Admin extends MY_Controller {
 		$data['tabela'] = $this->admin_model->vrati_tabelu($tabela);
 		$this->load->view($tabela, $data);
 	}
+	
+	public function pure($tabela, $id = NULL) {
+		echo json_encode($this->admin_model->vrati_tabelu($tabela));
+	}
 
 }
